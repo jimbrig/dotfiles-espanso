@@ -1,0 +1,48 @@
+name: obsidian
+parent: default
+
+matches:
+  - trigger: ":frontmatter"
+    replace: |
+      ---
+      creation_date: "<% tp.file.creation_date("YYYY-MM-DD") %>"
+      modification_date: "<% tp.file.last_modified_date("YYYY-MM-DD") %>"
+      author: "{{author}} <{{email}}>"
+      tags:
+        - Type/NA
+        - Topic/NA
+        - Status/NA
+      aliases:
+        - "<% tp.file.title %>"
+      cssclasses:
+      publish: true
+      ---
+
+    vars:
+      - name: date
+        type: date
+        params:
+          format: "%Y-%m-%d"
+      - name: author
+        type: shell
+        params:
+          cmd: "git config --global user.name"
+      - name: email
+        type: shell
+        params:
+          cmd: "git config --global user.email"
+      # - name: tags
+      #   type: form
+      # - name: aliases
+      #   type: form
+
+  - trigger: ":dvtoc"
+    replace: |
+      ```dataviewjs
+      dv.view('src/dataview-toc')
+      ```
+  - trigger: ":author"
+    replace: "Jimmy Briggs <jimmy.briggs@jimbrig.com>"
+
+  - trigger: ":gitemail"
+    replace: "jimmy.briggs@jimbrig.com"
