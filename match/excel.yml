@@ -1,0 +1,254 @@
+name: excel
+parent: default
+
+matches:
+
+  # Excel Function Snippets
+  - triggers: [":first"]
+    replace: '=LEFT(A2, SEARCH( " ", A2) - 1)'
+
+  - triggers: [":last"]
+    replace: '=RIGHT(A2, LEN(A2) - SEARCH( " ", A2, SEARCH(" ", A2, 1) + 1))'
+
+  - triggers: [":mid"]
+    replace: '=MID(A2, SEARCH(" ", A2, 1) + 1, SEARCH(" ", A2, SEARCH(" ", A2, 1) + 1) - SEARCH(" ", A2, 1) - 1)'
+
+  # VBA Snippets
+  - trigger: ":vbahead"
+    replace: |
+      ' -----------------------------------------------------------------------------
+      ' Name        : {{form_module.module_name}}
+      ' File        : {{form_module.module_name}}.{{form_module.file_extension}}
+      ' Description : {{form_module.module_description}}
+      ' Author      : Jimmy Briggs <jimmy.briggs@jimbrig.com
+      ' Date        : {{date}}
+      ' -----------------------------------------------------------------------------
+
+      Option Explicit
+
+      Private Const MODULE_NAME As String = "{{form_module.module_name}}"
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date +%Y-%m-%d"
+      - name: form_module
+        type: form
+        params:
+          layout: "Module Name: [[module_name]]\nModule Description: [[module_description]]\nType of VBA module: [[module_type]]\nFile Extension: [[file_extension]]\n\n"
+          fields:
+            module_type:
+              type: list
+              values:
+                  - "Standard Module"
+                  - "Class Module"
+                  - "Class Interface Module"
+                  - "User Form"
+                  - "Document Object"
+                  - "Workbook Object"
+            module_name:
+              type: string
+              params:
+                placeholder: "Name of the VBA module"
+            module_description:
+              type: string
+              multiline: true
+              params:
+                placeholder: "Description of the VBA module"
+            file_extension:
+              type: list
+              values:
+                  - "bas"
+                  - "cls"
+                  - "frm"
+
+  - trigger: ":vbafuncs"
+    replace: |
+      ' -----------------------------------------------------------------------------'
+      ' Name        : WBPath
+      ' Description : Returns the path of the current workbook.
+      ' Author      : {{MyNameAndEmail}}
+      ' Date        : {{date}}
+      ' -----------------------------------------------------------------------------'
+      Public Function WBPath() As String
+        WBPath = ActiveWorkbook.Path
+      End Function
+
+      ' -----------------------------------------------------------------------------'
+      ' Name        : PathSep
+      ' Description : Returns the path separator for the current OS.
+      ' Author      : {{MyNameAndEmail}}
+      ' Date        : {{date}}
+      ' -----------------------------------------------------------------------------'
+      Public Function PathSep() As String
+        PathSep = Application.PathSeparator
+      End Function
+
+      ' -----------------------------------------------------------------------------'
+      ' Name        : TimeStamp
+      ' Description : Returns a timestamp string.
+      ' Author      : {{MyNameAndEmail}}
+      ' Date        : {{date}}
+      ' -----------------------------------------------------------------------------'
+      Public Function TimeStamp() As String
+        TimeStamp = Format$(Now(), "yyyy-MM-DD:HH-MM-SS")
+      End Function
+
+      ' -----------------------------------------------------------------------------'
+      ' Name        : WBAuthor
+      ' Description : Returns the author of the current workbook.
+      ' Author      : {{MyNameAndEmail}}
+      ' Date        : {{date}}
+      ' -----------------------------------------------------------------------------'
+      Public Function WBAuthor() As String
+        WBAuthor = ActiveWorkbook.BuiltinDocumentProperties("Author")
+      End Function
+
+      ' -----------------------------------------------------------------------------'
+      ' Name        : WBName
+      ' Description : Returns the name of the current workbook.
+      ' Author      : {{MyNameAndEmail}}
+      ' Date        : {{date}}
+      ' -----------------------------------------------------------------------------'
+      Public Function WBName() As String
+        WBName = ActiveWorkbook.Name
+      End Function
+
+      ' -----------------------------------------------------------------------------'
+      ' Name        : SheetName
+      ' Description : Returns the name of the current sheet.
+      ' Author      : {{MyNameAndEmail}}
+      ' Date        : {{date}}
+      ' -----------------------------------------------------------------------------'
+      Public Function SheetName() As String
+        SheetName = ActiveSheet.Name
+      End Function
+    vars:
+      - name: date
+        type: shell
+        params:
+          cmd: "date +%Y-%m-%d"
+
+  - trigger: ":vbaconst"
+    replace: |
+      Const {{form_const.const_name}} As {{form_const.const_type}} = "{{form_const.const_value}}"
+    vars:
+      - name: form_const
+        type: form
+        params:
+          layout: "Constant Name: [[const_name]]\nData Type: [[const_type]]\nConst Value: [[const_value]]\n\n"
+          fields:
+            const_type:
+              type: list
+              values:
+                  - "String"
+                  - "Long"
+                  - "Boolean"
+                  - "Date"
+                  - "Double"
+                  - "Integer"
+                  - "Variant"
+            const_name:
+              type: string
+              params:
+                placeholder: "Name of the constant"
+            const_value:
+              type: string
+              params:
+                placeholder: "Value of the constant"
+
+
+  # Function {{name}}({{parameters}}) As {{return_type}}
+  #   {{name}} = {{return_value}}
+  # End Function
+
+
+  - trigger: ":vbasep"
+    replace: "' -----------------------------------------------------------------------------"
+
+  # - trigger: ":vbaend"
+  #   replace: "' -----------------------------------------------------------------------------"
+
+  # - trigger: ":vbahead"
+  #   replace: |
+  #     ' -----------------------------------------------------------------------------
+  #     ' Name        : {{modname}}
+  #     ' Type        : {{type}}
+  #     ' File        : {{modname}}.bas
+  #     ' Description :
+  #     ' Author      : Jimmy Briggs <jimmy.briggs@jimbrig.com
+  #     ' Date        : {{date}}
+  #     ' -----------------------------------------------------------------------------
+  #   vars:
+  #     - name: modname
+  #       type: text
+      #   params:
+      #     placeholder: "Name of the VBA module"
+      # - name: type
+      #   type: choice
+      #   params:
+      #     values:
+      #       - "Standard"
+      #       - "Class"
+      #       - "Form"
+      # - name: date
+      #   type: date
+      #   params:
+      #     format: "%Y-%m-%d"
+
+
+
+
+
+
+
+    #   - name: form_module_name
+    #     params:
+    #       layout: |
+    #         Name of the VBA module:
+    #         [[module]]
+    #       fields:
+    #         module:
+    #           type: string
+    #           params:
+    #             placeholder: "Name of the VBA module"
+    #         description:
+    #           type: string
+    #           params:
+    #             placeholder: "Description of the VBA module"
+
+    #   form: |
+    #   Name of the VBA module: [[output]]
+    #   Date: [[date]]
+    # form_fields:
+    #   date:
+    #     type: date
+    #     format: "yyyy-mm-dd"
+    #   output:
+    #     type: string
+    # vars:
+    #   - name: output
+    #     type:
+    #     params:
+    #       placeholder: "Name of the VBA module"
+    #   - name: date
+    #     type: date
+    #     params:
+    #       format: "yyyy-mm-dd"
+
+  # VBA Private Module Const
+  # - trigger: ":vbaconst"
+  #   replace: "Private Const {{name}} As {{type}} = {{value}}"
+  #   vars:
+  #     - name: name
+  #       type:
+  #       params:
+  #         message: "Name: "
+  #     - name: type
+  #       type: prompt
+  #       params:
+  #         message: "Type: "
+  #     - name: value
+  #       type: prompt
+  #       params:
+  #         message: "Value: "
