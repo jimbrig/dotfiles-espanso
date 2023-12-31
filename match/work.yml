@@ -1,0 +1,6 @@
+name: work
+parent: default
+
+matches:
+  - trigger: ":lchc"
+    replace: "lakecountryhuntclub"
