@@ -12,6 +12,7 @@
 
 ### Documentation
 
+- Update README badge
 - Add initial README
 - Initialize changelog with git-cliff
 
