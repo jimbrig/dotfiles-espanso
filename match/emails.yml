@@ -1,0 +1,25 @@
+name: emails
+parent: default
+
+matches:
+  - trigger: ":emailpersonal"
+    replace: "jimmy.briggs@jimbrig.com"
+  - trigger: ":emailgmail"
+    replace: "jimbrig2011@gmail.com"
+  - trigger: ":emailold"
+    replace: "jimbrig2011@gmail.com"
+  - trigger: ":emaillchc"
+    replace: "jimmy.briggs@lakecountryhuntclub.com"
+  - trigger: ":chooseemail"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: choice
+        params:
+          values:
+            - label: "Personal"
+              id: "jimmy.briggs@jimbrig.com"
+            - label: "LCHC"
+              id: "jimmy.briggs@lakecountryhunt.com"
+            - label: "Gmail"
+              id: "jimbrig2011@gmail.com"
