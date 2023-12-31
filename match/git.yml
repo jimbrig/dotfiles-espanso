@@ -1,0 +1,91 @@
+name: excel
+parent: default
+
+matches:
+  - trigger: ':giti'
+    replace: 'git init'
+  - trigger: 'gitcl'
+    replace: 'git clone '
+  - trigger: "gitconfigline1."
+    replace: "git config --global core.autocrlf true"
+
+  # Git Config Line 2
+  - trigger: "gitconfigline2."
+    replace: "git config --global core.safecrlf warn"
+
+  # Git Config Email Global
+  - trigger: "gitemailg."
+    replace: "git config --global user.email \"$|$\""
+
+  # Git Config Email Local
+  - trigger: "gitemaill."
+    replace: "git config --local user.email \"$|$\""
+
+  # Git Config User Global
+  - trigger: "gituserg."
+    replace: "git config --global user.name \"$|$\""
+
+  # Git Config User Local
+  - trigger: "gituserl."
+    replace: "git config --local user.name \"$|$\""
+
+  
+  ### -------------
+  ### Push | Pull 
+  ### -------------
+
+  # Git Status
+  - trigger: "gits."
+    replace: "git status"
+
+
+  # Git Add
+  - trigger: "gita."
+    replace: "git add ."
+
+  # Commit
+  - trigger: "gitc."
+    replace: "git commit -m \"$|$\""
+
+  # Amend Commit
+  - trigger: "gitamc."
+    replace: "git commit --amend -m \"$|$\""
+
+  # Amend Author
+  - trigger: "gitama."
+    replace: "git commit --amend --author=\"$|$User Name <email@email.com>\""
+
+
+  # Git Push
+  - trigger: "gitp."
+    replace: "git push origin "
+
+  # Git Push Force
+  - trigger: "gitpf."
+    replace: "git push origin --force "
+
+  # Git Pull 
+  - trigger: "gitu."
+    replace: "git pull origin "
+
+
+  # Remote Update
+  - trigger: "gitru."
+    replace: "git remote update"
+    
+  # Remote Update
+  - trigger: "gitfa."
+    replace: "git fetch --all"        
+
+
+  ### Stash
+
+  # Stash
+  - trigger: "gitst."
+    replace: "git stash"
+
+  - trigger: "gitstl."
+    replace: "git stash list"
+
+  - trigger: "gitsts."
+    replace: "git stash show"
