@@ -1,0 +1,16 @@
+name: about
+parent: base
+
+matches:
+  - trigger: ":about"
+    replace: "Creative and entrepreneurial Software Engineer and Actuarial Scientist with background working in dynamic and progressive environments as both an actuary and a developer in large and small organizations.\nFluent in a multitude of programming languages and frameworks used to develop software within a wide variety of industries."
+  - trigger: ":shortbio"
+    replace: "Creative and entrepreneurial Software Engineer with a focus on Actuarial Science."
+  - trigger: ":bio"
+    replace: "Creative and entrepreneurial Software Engineer and Actuarial Scientist with background working in dynamic and progressive environments as both an actuary and a developer in large and small organizations.\nFluent in a multitude of programming languages and frameworks used to develop software within a wide variety of industries.\nCollaborative team player focused on scoping projects and achieving objectives with speed and accuracy.\nSuccessful history of identifying patterns, making interpretations, and producing results."
+  - trigger: ":company"
+    replace: "JimBrig"
+  - trigger: ":job"
+    replace: "Software Engineer"
+  - trigger: ":department"
+    replace: "Actuarial Modernization"
