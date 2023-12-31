@@ -11,7 +11,7 @@
 
 
 <!--Start:Badges-->
-[![Generate Changelog](https://github.com/jimbrig/espanso/actions/workflows/changelog.yml/badge.svg)](https://github.com/jimbrig/espanso/actions/workflows/changelog.yml)
+[![Generate Changelog](https://github.com/jimbrig/dotfiles-espanso/actions/workflows/changelog.yml/badge.svg)](https://github.com/jimbrig/dotfiles-espanso/actions/workflows/changelog.yml)
 <!--End:Badges-->
 
 [Espanso Website](https://espanso.org/) | [EspansoHub](https://hub.espanso.org/) | [Documentation](https://espanso.org/docs/get-started/) | [Reddit Community](https://www.reddit.com/r/espanso/) | [GitHub](https://github.com/federico-terzi/espanso)
