@@ -1,0 +1,6 @@
+name: address
+parent: base
+
+matches:
+  - trigger: ":address"
+    replace: "2161 Peachtree Rd NE, Unit 401, Atlanta, GA, 30309"
