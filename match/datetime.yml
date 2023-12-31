@@ -1,0 +1,29 @@
+name: datetimes
+parent: default
+
+matches:
+
+  # Print the current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+  - trigger: ":timestamp"
+    replace: "{{mydatetime}}"
+    vars:
+      - name: mydatetime
+        type: date
+        params:
+          format: "%Y-%m-%d %H:%M:%S"
+
+  - trigger: ":onlytime"
+    replace: "{{mytime}}"
+    vars:
+      - name: mytime
+        type: date
+        params:
+          format: "%H:%M:%S"
